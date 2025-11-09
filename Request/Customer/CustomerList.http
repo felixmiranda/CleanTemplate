@@ -1,0 +1,4 @@
+@host=http://localhost:5082
+
+GET {{host}}/api/Customer
+Content-Type: application/json    

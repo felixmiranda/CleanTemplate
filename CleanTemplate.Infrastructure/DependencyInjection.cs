@@ -1,5 +1,9 @@
 using System;
+using CleanTemplate.Application.Interfaces.Persistence;
+using CleanTemplate.Application.Interfaces.Services;
 using CleanTemplate.Infrastructure.Persistence.Context;
+using CleanTemplate.Infrastructure.Persistence.Repositories;
+using CleanTemplate.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +22,9 @@ public static class DependencyInjection
                 b => b.MigrationsAssembly(assembly)
             )
         );
+
+        services.AddTransient<IUnitOfWork, UnitOfWork>();
+        services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>)) ;
 
         return services;
     }   

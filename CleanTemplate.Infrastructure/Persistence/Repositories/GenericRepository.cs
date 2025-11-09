@@ -21,7 +21,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     public async Task<IEnumerable<T>> GetAllAsync()
     {
         var response = await _entity
-            .Where(x => x.State == ActiveState && !IsDeleted(x))
+            .Where(x => x.State == ActiveState && x.AuditDeleteUser == null && x.AuditDeleteDate == null)
             .ToListAsync();
         return response;
     }
@@ -29,7 +29,10 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     public async Task<T> GetByIdAsync(int id)
     {
         var response = await _entity
-            .SingleOrDefaultAsync(x => x.Id == id && x.State == ActiveState && !IsDeleted(x));
+            .SingleOrDefaultAsync(x => x.Id == id && 
+                                x.State == ActiveState && 
+                                x.AuditDeleteUser == null && 
+                                x.AuditDeleteDate == null);
         return response!;
     }
 
