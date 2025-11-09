@@ -91,6 +91,7 @@ docker-compose.override.yml
 
 # === Dev containers & DB volumes ===
 .containers/
+.containers/**
 docker-data/
 **/pgdata/
 **/postgres-data/
