@@ -1,0 +1,103 @@
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio / VS Code / Rider
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+_ReSharper*/
+*.ReSharper*
+*.DotSettings.user
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+*.nuget.props
+*.nuget.targets
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+
+# Build results and temp files
+[Bb]uild[Ll]og.*
+*.[Pp]ublish.xml
+*.azurePubxml
+*.pubxml
+*.publishproj
+*.pfx
+*.stackdump
+*.tmp
+*.temp
+*.pidb
+*.[Cc]ache
+
+# Test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+*.trx
+*.coverage
+*.coveragexml
+
+# OS generated files
+.DS_Store*
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+[Tt]humbs.db
+
+# ASP.NET Core
+appsettings.Development.json
+appsettings.local.json
+*.Development.json
+wwwroot/dist/
+
+# Docker
+docker-compose.override.yml
+*.env
+
+# IDE specific files
+*.swp
+*.swo
+*~
+
+# Published artifacts
+[Pp]ublish/
+[Pp]ublished/
+*.exe
+*.dll
+*.pdb
+
+# === Dev containers & DB volumes ===
+.containers/
+docker-data/
+**/pgdata/
+**/postgres-data/
+**/postgres/**
+
+# Opcional: si tienes dumps/temp
+*.sql
+*.dump
+*.bak
+
