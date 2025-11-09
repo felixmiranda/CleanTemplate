@@ -96,4 +96,11 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         var recordsAffected = await _context.SaveChangesAsync();
         return recordsAffected > 0;
     }
+
+    public IQueryable<T> GetAllQueryable()
+    {
+        var response = _entity
+            .Where(x => x.AuditDeleteUser == null && x.AuditDeleteDate == null);
+        return response;
+    }
 }

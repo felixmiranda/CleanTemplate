@@ -23,9 +23,9 @@ public static class DependencyInjection
             )
         );
 
-        services.AddTransient<IUnitOfWork, UnitOfWork>();
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>)) ;
-
+        services.AddTransient<IUnitOfWork, UnitOfWork>();
+        services.AddTransient<IOrderingQuery, OrderingQuery>();
         return services;
     }   
 }
