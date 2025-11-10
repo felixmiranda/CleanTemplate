@@ -1,0 +1,12 @@
+@host=https://localhost:7060
+
+POST {{host}}/api/Customer/Update
+Content-Type: application/json
+
+{
+
+    "Name": "John Doe",
+    "LastName": "Smith",
+    "Address": "123 Main St",
+    "City": "SF - CA"
+}

@@ -36,34 +36,30 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         return response!;
     }
 
-    public async Task<bool> CreateAsync(T entity)
+    public async Task CreateAsync(T entity)
     {
         SetCreateAudit(entity);
         await _context.AddAsync(entity);
-        return await SaveChangesAsync();
+        
     }
 
-    public async Task<bool> UpdateAsync(T entity)
+    public void UpdateAsync(T entity)
     {
         SetUpdateAudit(entity);
         _context.Update(entity);
         PreserveCreateAudit(entity);
-        return await SaveChangesAsync();
     }
 
-    public async Task<bool> DeleteAsync(int id)
+    public async Task DeleteAsync(int id)
     {
         var entity = await GetByIdAsync(id);
         if (entity == null)
-            return false;
-
+            throw new ArgumentException($"Entity with id {id} not found.");
+            
         SetDeleteAudit(entity);
         _context.Update(entity);
-        return await SaveChangesAsync();
-    }
 
-    private static bool IsDeleted(BaseEntity entity) =>
-        entity.AuditDeleteUser != null && entity.AuditDeleteDate != null;
+    }
 
     private static void SetCreateAudit(BaseEntity entity)
     {
@@ -89,12 +85,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         _context.Entry(entity).Property(x => x.AuditCreateUser).IsModified = false;
         _context.Entry(entity).Property(x => x.AuditCreateDate).IsModified = false;
-    }
-
-    private async Task<bool> SaveChangesAsync()
-    {
-        var recordsAffected = await _context.SaveChangesAsync();
-        return recordsAffected > 0;
+        _context.Entry(entity).Property(x => x.State).IsModified = false;
     }
 
     public IQueryable<T> GetAllQueryable()
